@@ -44,7 +44,7 @@ Will only occur if `personal-whitespace' is also enabled."
   :type 'symbol
   :group 'personal)
 
-(defcustom personal-default-directory "~/dev/code/"
+(defcustom personal-default-directory "~/"
   "The default directory"
   :type 'string
   :group 'personal)
