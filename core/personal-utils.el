@@ -69,15 +69,6 @@ Doesn't mess with special buffers."
     (switch-to-buffer buf)
     (funcall initial-major-mode)))
 
-(defun personal-recentf-ido-find-file ()
-  "Find a recent file using ido."
-  (interactive)
-  (let ((file (ido-completing-read "Choose recent file: "
-                                   (-map 'abbreviate-file-name recentf-list)
-                                   nil t)))
-    (when file
-      (find-file file))))
-
 (defun personal-swap-windows ()
   "If you have 2 windows, it swaps them."
   (interactive)
