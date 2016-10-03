@@ -48,6 +48,19 @@
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
+;; conditional init
+(setq personal-init-type (intern (getenv "EMACS_INIT")))
+
+(if (null personal-init-type)
+    (setq personal-init-type 'min)
+  (if (member 'full (list 'min 'full 'irc))
+      (message "Initializing for %s..." (symbol-name personal-init-type))
+    (error (concat "Unknown init type " (symbol-name personal-init-type)))))
+
+(setq personal-init-min (eq 'min personal-init-type))
+(setq personal-init-full (eq 'full personal-init-type))
+(setq personal-init-irc (eq 'irc personal-init-type))
+
 (provide 'personal-core)
 
 ;;; personal-core.el ends here

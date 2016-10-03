@@ -1,5 +1,8 @@
 (use-package java-mode
-             :mode "\\.java\\'")
+  :if personal-init-full
+  :mode "\\.java\\'")
 
 (use-package javap-mode
-             :mode "\\.jbc\\'")
+  :if personal-init-full
+  :ensure t
+  :mode "\\.jbc\\'")

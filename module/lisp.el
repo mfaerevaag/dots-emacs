@@ -1,4 +1,6 @@
-(use-package lisp-mode
+(use-package lisp
+  :if personal-init-full
+  :ensure slime
   :mode ("\\.lisp\\'" "\\.cl\\'")
   :config
   (setq inferior-lisp-program "sbcl")

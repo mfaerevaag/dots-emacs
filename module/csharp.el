@@ -1,5 +1,9 @@
 (use-package csharp-mode
-             :mode "\\.cs\\'")
+  :if personal-init-full
+  :ensure t
+  :mode "\\.cs\\'")
 
 (use-package cil-mode
-             :mode "\\.cil\\'")
+  :if personal-init-full
+  :ensure t
+  :mode "\\.cil\\'")
