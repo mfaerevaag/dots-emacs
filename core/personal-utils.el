@@ -162,22 +162,19 @@ With a prefix argument ARG, find the `user-init-file' instead."
   (interactive "P")
   (find-file-other-window user-init-file))
 
-(defun personal-enable-flyspell ()
-  "Enable command `flyspell-mode' if `personal-flyspell' is not nil."
-  (when (and personal-flyspell (executable-find ispell-program-name))
-    (flyspell-mode +1)))
+(defun personal-quick-cut-line ()
+  "Cut the whole line that point is on.
+Consecutive calls to this command append each line to the kill-ring."
+  (interactive)
+  (let ((beg (line-beginning-position 1))
+        (end (line-beginning-position 2)))
+    (if (eq last-command 'quick-cut-line)
+        (kill-append (buffer-substring beg end) (< end beg))
+      (kill-new (buffer-substring beg end)))
+    (delete-region beg end))
+  (beginning-of-line 1)
+  (setq this-command 'quick-cut-line))
 
-(defun personal-cleanup-maybe ()
-  "Invoke `whitespace-cleanup' if `personal-clean-whitespace-on-save' is not nil."
-  (when personal-clean-whitespace-on-save
-    (whitespace-cleanup)))
-
-(defun personal-enable-whitespace ()
-  "Enable `whitespace-mode' if `personal-whitespace' is not nil."
-  (when personal-whitespace
-    ;; keep the whitespace decent all the time (in this buffer)
-    (add-hook 'before-save-hook 'personal-cleanup-maybe nil t)
-    (whitespace-mode +1)))
 
 (provide 'personal-utils)
 
