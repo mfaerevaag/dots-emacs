@@ -7,7 +7,6 @@
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c o") 'personal-open-with)
     (define-key map (kbd "C-c n") 'personal-cleanup-buffer-or-region)
-    (define-key map (kbd "C-c f") 'personal-recentf-ido-find-file)
     (define-key map (kbd "C-c s") 'personal-swap-windows)
     (define-key map (kbd "C-c D") 'personal-delete-file-and-buffer)
     (define-key map (kbd "C-c d") 'personal-duplicate-current-line-or-region)
