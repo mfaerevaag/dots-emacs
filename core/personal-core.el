@@ -38,6 +38,16 @@
     (add-hook 'before-save-hook 'personal-cleanup-maybe nil t)
     (whitespace-mode +1)))
 
+;; fix kill-region
+;; note - this should be after volatile-highlights is required
+;; add the ability to cut the current line, without marking it
+(defadvice kill-region (before smart-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
+
 (provide 'personal-core)
 
 ;;; personal-core.el ends here

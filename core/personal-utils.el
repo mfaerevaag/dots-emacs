@@ -130,8 +130,7 @@ Doesn't mess with special buffers."
   (whitespace-cleanup))
 
 (defun personal-get-positions-of-line-or-region ()
-  "Return positions (beg . end) of the current line
-or region."
+  "Return positions (beg . end) of the current line or region."
   (let (beg end)
     (if (and mark-active (> (point) (mark)))
         (exchange-point-and-mark))
@@ -162,19 +161,6 @@ there's a region, all lines that region covers will be duplicated."
 With a prefix argument ARG, find the `user-init-file' instead."
   (interactive "P")
   (find-file-other-window user-init-file))
-
-(defun personal-quick-cut-line ()
-  "Cut the whole line that point is on.
-Consecutive calls to this command append each line to the kill-ring."
-  (interactive)
-  (let ((beg (line-beginning-position 1))
-        (end (line-beginning-position 2)))
-    (if (eq last-command 'quick-cut-line)
-        (kill-append (buffer-substring beg end) (< end beg))
-      (kill-new (buffer-substring beg end)))
-    (delete-region beg end))
-  (beginning-of-line 1)
-  (setq this-command 'quick-cut-line))
 
 
 (provide 'personal-utils)
