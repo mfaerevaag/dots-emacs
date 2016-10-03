@@ -123,6 +123,7 @@ Doesn't mess with special buffers."
 (defun personal-cleanup-buffer-or-region ()
   "Cleanup a region if selected, otherwise the whole buffer."
   (interactive)
+  (unless (region-active-p) (mark-whole-buffer))
   (call-interactively 'untabify)
   (unless (member major-mode personal-indent-sensitive-modes)
     (call-interactively 'indent-region))
