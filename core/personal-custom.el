@@ -49,6 +49,11 @@ Will only occur if `personal-whitespace' is also enabled."
   :type 'string
   :group 'personal)
 
+(defcustom personal-todo-file "~/org/todo.org"
+  "Personal todo.org file"
+  :type 'string
+  :group 'personal)
+
 (provide 'personal-custom)
 
 ;;; personal-custom.el ends here

@@ -2,6 +2,7 @@
 ;;; commentary:
 ;;; code:
 
+;; personal key map
 (defvar personal-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c o") 'personal-open-with)
@@ -20,6 +21,9 @@
     (define-key map (kbd "M-s-f") '(lambda () (interactive) (shrink-window-horizontally -1)))
     (define-key map (kbd "M-s-b") '(lambda () (interactive) (shrink-window-horizontally 1)))
     map))
+
+;; registers
+(set-register ?t (cons 'file personal-todo-file))
 
 (provide 'personal-bindings)
 

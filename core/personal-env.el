@@ -2,10 +2,6 @@
 ;;; Commentary:
 ;;; Code:
 
-;; registers
-(set-register ?e (cons 'file user-init-file))
-(set-register ?t (cons 'file "~/todo.org"))
-
 ;; platform specific
 (cond
  ((string-equal system-type "windows-nt") ; Windowns
