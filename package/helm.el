@@ -1,5 +1,6 @@
 (use-package helm
-  :ensure t
+  :ensure helm
+  :ensure helm-ag
   :diminish helm-mode
   :bind (("M-x" . helm-M-x)
          ("C-x C-f" . helm-find-files)
@@ -18,7 +19,3 @@
         helm-ff-search-library-in-sexp        t
         helm-ff-file-name-history-use-recentf t)
   (helm-mode 1))
-
-(use-package helm-projectile
-  :config
-  (helm-projectile-on))
