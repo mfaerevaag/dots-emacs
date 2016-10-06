@@ -1,5 +1,5 @@
 (use-package irc
-  :if personal-init-irc
+  :if (eq 'irc personal-init-type)
   :ensure circe
   :ensure helm-circe
 
