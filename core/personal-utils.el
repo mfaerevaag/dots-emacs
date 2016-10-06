@@ -2,11 +2,6 @@
 ;;; commentary:
 ;;; code:
 
-(defun personal-show-file-name ()
-  "Show the full path file name in the minibuffer."
-  (interactive)
-  (message (buffer-file-name)))
-
 (defun personal-copy-yank-str (msg)
   "Yank string to clipboard"
   (kill-new msg)
