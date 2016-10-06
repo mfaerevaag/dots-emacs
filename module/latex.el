@@ -42,17 +42,11 @@
             ("PDF Viewer" "open %o")
             ("HTML Viewer" "open %o"))))
 
-  (defun personal-latex-mode-defaults ()
-    "Default Personal hook for `LaTeX-mode'."
-    (turn-on-auto-fill)
-    (abbrev-mode +1)
-    (smartparens-mode +1)
-    (case personal-latex-fast-math-entry
-      (LaTeX-math-mode (LaTeX-math-mode 1))
-      (cdlatex (turn-on-cdlatex))))
-
-  (setq personal-latex-mode-hook 'personal-latex-mode-defaults)
-
   (add-hook 'LaTeX-mode-hook (lambda ()
-                               (run-hooks 'personal-latex-mode-hook)))
+                               (auto-fill-mode +1)
+                               (abbrev-mode +1)
+                               (smartparens-mode +1)
+                               (case personal-latex-fast-math-entry
+                                 (LaTeX-math-mode (LaTeX-math-mode 1))
+                                 (cdlatex (turn-on-cdlatex)))))
   )
