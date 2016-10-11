@@ -7,3 +7,7 @@ projectile-bookmarks.eld
 elpa/
 savefile/
 custom.el
+/.org-id-locations
+/bookmarks
+/org-caldav-*.el
+/emojis

@@ -3,6 +3,9 @@
          ;; ("C-c l" . org-store-link)
          ("C-c a" . org-agenda)
          )
+  :init
+  (setq org-agenda-files '("~/org/cal/"))
+
   :config
   ;; (setq org-log-done t)
 
@@ -17,4 +20,6 @@
   ;;   )
   ;; (setq personal-org-mode-hook 'personal-org-mode-defaults)
   ;; (add-hook 'org-mode-hook (lambda () (run-hooks 'personal-org-mode-hook)))
+
+  (add-hook 'org-mode-hook #'yas-minor-mode)
   )

@@ -1,31 +1,57 @@
-(use-package irc
+(use-package rcirc
   :if (eq 'irc personal-init-type)
-  :ensure circe
-  :ensure helm-circe
+
+  :ensure rcirc
+  :ensure rcirc-groups
+  :ensure rcirc-alertify
 
   :config
 
+  (setq-default rcirc-server-alist '(("irc.freenode.net"
+                                      :channels ()
+                                      :nick "slevin"
+                                      :encryption tls
+                                      :port 6697)
+                                     ("localhost"
+                                      :nick "markus"
+                                      :port 6667
+                                      :channels ("&facebook"))))
+  (setq-default rcirc-authinfo '(("freenode" nickserv "slevin" "GdFuudT7FefG4XK2Gn1RnjamyoS0L3D83RaROic1k10ajy5zxr")
+                                 ("localhost" bitlbee "markus" "B2i2L.kjas.")))
+
+  (add-hook 'rcirc-mode-hook
+            (lambda ()
+              ;; keep input line at bottom.
+              (set (make-local-variable 'scroll-conservatively) 8192)
+              ;; spellcheck
+              (flyspell-mode 1)
+              (ispell-change-dictionary "norsk")
+              ;; window config
+              (winner-mode 1)))
+
+  ;; formating
+  (setq rcirc-prompt      "»» "
+        rcirc-time-format "%H:%M "
+        ;; autofill off
+        rcirc-fill-flag   nil)
+
+  ;; extensions
+  (require 'rcirc-groups)
+  ;; (setq rcirc-groups:display-all t)
+  (defun rcirc-groups:switch-to-conversation-buffer ()
+    "switch from *rcirc-groups* buffer to referenced one"
+    (interactive)
+    (let ((conversation-buffer
+           (buffer-substring (line-beginning-position) (line-end-position))))
+      (rcirc-groups:catchup-conversation)
+      (set-window-buffer (other-window 1) conversation-buffer)))
+
+  (require 'rcirc-alertify)
+  (rcirc-alertify-enable)
+  (setq alert-default-style 'libnotify)
+
   (add-hook 'after-init-hook (lambda ()
-
-                               (setq freenode-pass (password-store-get "irc/freenode-slevin"))
-
-                               (setq circe-network-options
-                                     '(("Freenode"
-                                        :nick "slevin"
-                                        :channels ("#emacs")
-                                        :nickserv-password ,freenode-pass
-                                        )))
-
-                               ;; grey out bot text
-                               (defvar personal-circe-bot-list '("phrik" "q"))
-                               (defun personal-circe-message-option-bot (nick &rest ignored)
-                                 (when (member nick personal-circe-bot-list)
-                                   '((text-properties . (face circe-fool-face
-                                                              lui-do-not-track t)))))
-                               (add-hook 'circe-message-option-functions 'personal-circe-message-option-bot)
-
-                               ;; spellcheck
-                               (flyspell-mode 1)
-
-                               (circe "Freenode")
-                               )))
+                               (rcirc-connect "irc.freenode.net")
+                               (rcirc-connect "localhost")
+                               ))
+  )

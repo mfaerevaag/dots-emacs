@@ -15,6 +15,8 @@
     (define-key map (kbd "C-c I") 'personal-find-user-init-file)
     (define-key map (kbd "C-x C-n") 'personal-create-scratch-buffer)
 
+    (define-key map (kbd "C-c e") 'emojify-insert-emoji)
+
     (define-key map (kbd "M-s-n") '(lambda () (interactive) (shrink-window -1)))
     (define-key map (kbd "M-s-p") '(lambda () (interactive) (shrink-window 1)))
     (define-key map (kbd "M-s-f") '(lambda () (interactive) (shrink-window-horizontally -1)))

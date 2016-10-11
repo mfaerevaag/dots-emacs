@@ -49,8 +49,8 @@
            (line-beginning-position 2)))))
 
 ;; conditional init
-(setq personal-init-type (intern (or "min" (getenv "EMACS_INIT"))))
-(if (member 'full (list 'min 'full 'irc))
+(setq personal-init-type (intern (or (getenv "EMACS_INIT") "min")))
+(if (member 'full (list 'min 'full 'irc 'mail))
       (message "Initializing for %s..." (symbol-name personal-init-type))
     (error (concat "Unknown init type " (symbol-name personal-init-type))))
 (setq personal-init-full (eq 'full personal-init-type))

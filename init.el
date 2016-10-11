@@ -43,5 +43,4 @@
 ;; loading modules
 (message "Loading modules...")
 (mapc 'load (directory-files personal-module-dir 't "^[^#].*el$"))
-
 ;;; init.el ends here
