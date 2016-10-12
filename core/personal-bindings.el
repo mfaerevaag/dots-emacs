@@ -14,6 +14,8 @@
     (define-key map (kbd "C-c k") 'personal-kill-other-buffers)
     (define-key map (kbd "C-c I") 'personal-find-user-init-file)
     (define-key map (kbd "C-x C-n") 'personal-create-scratch-buffer)
+    (define-key map (kbd "C-+") 'text-scale-increase)
+    (define-key map (kbd "C--") 'text-scale-decrease)
 
     (define-key map (kbd "C-c e") 'emojify-insert-emoji)
 
