@@ -52,10 +52,12 @@
 (require 'midnight)
 
 ;; overwrite C-a to go to beginning line with cursor on first
-;; non-whitespace
+;; non-whitespace char
 (global-set-key [remap move-beginning-of-line]
                 'personal-move-beginning-of-line)
 
+;; ws cleanup on save
+(add-hook 'before-save-hook 'whitespace-cleanup)
 
 (provide 'personal-editor)
 
